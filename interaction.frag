@@ -49,6 +49,7 @@ varying vec3 var_V;
 uniform vec4 u_diffuseColor;
 uniform vec4 u_specularColor;
 //uniform float u_specularExponent;
+uniform lowp float u_brightness;
 
 uniform sampler2D u_fragmentMap0;	/* u_bumpTexture */
 uniform sampler2D u_fragmentMap1;	/* u_lightFalloffTexture */
@@ -99,5 +100,6 @@ void main(void)
 	color *= NdotL * lightProjection;
 	color *= lightFalloff;
 
-	gl_FragColor = vec4(color, 1.0) * var_Color;
+	vec4 color_ = vec4(color, 1.0) * var_Color;
+	gl_FragColor = pow(color_, vec4(1.0 / u_brightness));
 }
