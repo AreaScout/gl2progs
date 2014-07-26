@@ -22,13 +22,11 @@ precision mediump float;
 
 uniform sampler2D u_fragmentMap0;
 uniform lowp vec4 u_glColor;
-uniform lowp float u_gamma;
 
 varying vec2 var_TexDiffuse;
 varying lowp vec4 var_Color;
 
 void main(void)
 {
-	vec4 color = texture2D(u_fragmentMap0, var_TexDiffuse) * u_glColor * var_Color;
-	gl_FragColor = pow(color, vec4(1.0 / u_gamma)); 
+	gl_FragColor = texture2D(u_fragmentMap0, var_TexDiffuse) * u_glColor * var_Color;
 }
